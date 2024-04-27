@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./App.css";
+import styles from "./App.module.scss";
 import { Carousel } from "./components/carousel/Carousel";
 import { IImage } from "./model/IImage";
 
@@ -9,5 +9,9 @@ export const App: React.FC = () => {
     { content: "second" },
     { content: "third" },
   ]);
-  return <Carousel images={images} />;
+  return (
+    <div className={styles.app}>
+      <Carousel images={images} />;
+    </div>
+  );
 };

@@ -21,6 +21,7 @@ export const App: React.FC = () => {
         onImageClick={(image) => {
           setText(`Image '${image.content}' was clicked`);
         }}
+        repeat={true}
       />
       <h1>{text}</h1>
     </div>

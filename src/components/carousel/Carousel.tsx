@@ -12,10 +12,30 @@ export const Carousel: React.FC<ICarouselProps> = (props) => {
 
   const size = props.size ?? 1;
 
+  const include = (index: number) => {
+    const indexLast = cursor + size - 1;
+    if (!repeat) {
+      if (index >= cursor && index <= indexLast) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    if (index >= cursor && index <= indexLast) {
+      return true;
+    }
+
+    // const difference = cursor + size + 1 - props.images.length;
+    // if (difference >= 0 && index <= difference) {
+    //   return true;
+    // }
+
+    return false;
+  };
+
   const items = props.images
-    .filter((_, index) => {
-      return index >= cursor && index <= cursor + size - 1;
-    })
+    .filter((_, index) => include(index))
     .map((image, index) => (
       <Image key={index} image={image} onClick={props.onImageClick} />
     ));
@@ -63,6 +83,8 @@ export const Carousel: React.FC<ICarouselProps> = (props) => {
       return previous - 1;
     });
   };
+
+  console.log(`Cursor-Position ${cursor}`)
 
   return (
     <div className={styles.carousel}>

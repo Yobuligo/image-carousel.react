@@ -9,8 +9,8 @@ export const App: React.FC = () => {
     { content: "2" },
     { content: "3" },
     { content: "4" },
-    // { content: "5" },
-    // { content: "6" },
+    { content: "5" },
+    { content: "6" },
   ]);
   return (
     <div className={styles.app}>

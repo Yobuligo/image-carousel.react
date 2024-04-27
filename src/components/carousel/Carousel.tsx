@@ -8,6 +8,8 @@ import { ICarouselProps } from "./ICarouselProps";
 export const Carousel: React.FC<ICarouselProps> = (props) => {
   const [cursor, setCursor] = useState(0);
 
+  const repeat = props.repeat ?? false;
+
   const size = props.size ?? 1;
 
   const items = props.images
@@ -23,9 +25,15 @@ export const Carousel: React.FC<ICarouselProps> = (props) => {
         return previous;
       }
 
-      // At the end? Navigate to first
-      if (previous === props.images.length - 1) {
-        return 0;
+      // At the end?
+      if (previous === props.images.length - size) {
+        if (repeat) {
+          // Navigate to first
+          return 0;
+        } else {
+          // Hold position
+          return previous;
+        }
       }
 
       return previous + 1;
@@ -39,9 +47,15 @@ export const Carousel: React.FC<ICarouselProps> = (props) => {
         return previous;
       }
 
-      // At the beginning? Navigate to last
+      // At the beginning?
       if (previous === 0) {
-        return props.images.length - 1;
+        if (repeat) {
+          // Navigate to last
+          return props.images.length - 1;
+        } else {
+          // Hold position
+          return previous;
+        }
       }
 
       return previous - 1;

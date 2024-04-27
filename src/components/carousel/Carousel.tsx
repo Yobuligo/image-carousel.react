@@ -16,7 +16,9 @@ export const Carousel: React.FC<ICarouselProps> = (props) => {
     .filter((_, index) => {
       return index >= cursor && index <= cursor + size - 1;
     })
-    .map((image, index) => <Image key={index} image={image} />);
+    .map((image, index) => (
+      <Image key={index} image={image} onClick={props.onImageClick} />
+    ));
 
   const onNext = () => {
     setCursor((previous) => {

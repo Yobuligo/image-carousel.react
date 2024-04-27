@@ -3,6 +3,8 @@ import { IImage } from "../../model/IImage";
 export interface ICarouselProps {
   images: IImage[];
 
+  onImageClick?: (image: IImage) => void;
+
   /**
    * Returns if the carousel start from the beginning, if it reached the end.
    */

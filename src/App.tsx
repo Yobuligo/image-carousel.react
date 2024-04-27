@@ -4,6 +4,7 @@ import { Carousel } from "./components/carousel/Carousel";
 import { IImage } from "./model/IImage";
 
 export const App: React.FC = () => {
+  const [text, setText] = useState("");
   const [images] = useState<IImage[]>([
     { content: "1" },
     { content: "2" },
@@ -14,7 +15,14 @@ export const App: React.FC = () => {
   ]);
   return (
     <div className={styles.app}>
-      <Carousel images={images} size={3}/>
+      <Carousel
+        images={images}
+        size={3}
+        onImageClick={(image) => {
+          setText(`Image '${image.content}' was clicked`);
+        }}
+      />
+      <h1>{text}</h1>
     </div>
   );
 };

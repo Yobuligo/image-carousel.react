@@ -8,8 +8,12 @@ import { ICarouselProps } from "./ICarouselProps";
 export const Carousel: React.FC<ICarouselProps> = (props) => {
   const [cursor, setCursor] = useState(0);
 
+  const size = props.size ?? 1;
+
   const items = props.images
-    .filter((_, index) => index === cursor)
+    .filter((_, index) => {
+      return index >= cursor && index <= cursor + size - 1;
+    })
     .map((image, index) => <Image key={index} image={image} />);
 
   const onNext = () => {

@@ -14,7 +14,7 @@ export const App: React.FC = () => {
   ]);
   return (
     <div className={styles.app}>
-      <Carousel images={images} />
+      <Carousel images={images} size={3}/>
     </div>
   );
 };
